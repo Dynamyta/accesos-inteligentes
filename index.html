@@ -198,3 +198,216 @@
         }
 
         .alert-box.warn {
+            background-color: #fef2f2;
+            border-left-color: #ef4444;
+            color: #991b1b;
+        }
+
+        /* GRILLA DOBLE PARA VARIANTES (Mirillas Oro/Plata) */
+        .variant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .variant-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 6px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .variant-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #64748b;
+            margin-bottom: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <header>
+        <h1>🛡️ Catálogo de Accesos</h1>
+        <p>Toca una categoría para ver referencias y argumentos</p>
+    </header>
+
+    <nav class="menu-grid">
+        <div class="menu-btn" data-target="motores"><span>🚗</span>Motores</div>
+        <div class="menu-btn" data-target="porteros"><span>🔔</span>Porteros</div>
+        <div class="menu-btn" data-target="locks"><span>🔒</span>Cerraduras</div>
+        <div class="menu-btn" data-target="mirillas"><span>👁️</span>Mirillas</div>
+        <div class="menu-btn full-width" data-target="camaras"><span>📡</span>El "As" bajo la manga</div>
+    </nav>
+
+    <div id="motores" class="tab-content">
+        <div class="product-card">
+            <div class="prod-header">
+                <div class="prod-title">Ezviz HG2 400 (Hasta 400kg)</div>
+                <div class="prod-price">399,99 €</div>
+            </div>
+            <div class="booster-box">
+                <span class="booster-label">Ref LM</span>
+                <span class="booster-ref">99041385</span>
+            </div>
+            <ul class="features-list">
+                <li><b>El equilibrado:</b> Ideal para el 80% de puertas residenciales estándar (aluminio/hierro ligero).</li>
+                <li><b>Batería auxiliar integrada:</b> Salvavidas total; si hay un corte de luz, la puerta se sigue abriendo.</li>
+                <li>Apertura remota por App/Bluetooth y opción de <b>apertura parcial</b> para paso de peatones o bicis.</li>
+            </ul>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-header">
+                <div class="prod-title">Ezviz HG2 600 PRO (Hasta 600kg)</div>
+                <div class="prod-price">599,00 €</div>
+            </div>
+            <div class="booster-box">
+                <span class="booster-label">Ref LM</span>
+                <span class="booster-ref">97067011</span>
+            </div>
+            <ul class="features-list">
+                <li><b>Seguridad Activa:</b> Fuerza bruta para cancelas grandes y pesadas (hierro macizo/madera).</li>
+                <li><b>Cámara de vídeo con IA integrada:</b> La propia luz de aviso exterior graba en vivo y alerta al móvil si detecta intrusos merodeando antes de abrir.</li>
+                <li>Usa tecnología Wi-Fi HaLow™ para asegurar cobertura total aunque el router esté muy lejos.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="porteros" class="tab-content">
+        <div class="product-card">
+            <div class="prod-header"><div class="prod-title">Ezviz HP5 (7" WiFi)</div></div>
+            <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">92155368</span></div>
+            <ul class="features-list">
+                <li><b>La opción económica inteligente:</b> Funciones esenciales de contestar y abrir desde el móvil a un precio imbatible.</li>
+            </ul>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-header"><div class="prod-title">Ezviz HP7 (7" 2K WiFi)</div></div>
+            <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">87023036</span></div>
+            <ul class="features-list">
+                <li><b>Gama alta fija:</b> Cableado tradicional con una nitidez de imagen espectacular en 2K.</li>
+                <li><b>Lector RFID:</b> Incluye llaveros/tarjetas de proximidad para entrar sin usar llaves físicas ni móvil.</li>
+            </ul>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-header"><div class="prod-title">Ezviz HP7 Pro (7" Premium)</div></div>
+            <div class="booster-box"><span class="ref-label booster-label">Ref LM</span><span class="booster-ref">96391346</span></div>
+            <ul class="features-list">
+                <li><b>Última novedad:</b> Evolución directa del HP7 con procesador más rápido, vídeo más fluido y detección IA mejorada.</li>
+            </ul>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-header"><div class="prod-title">Ezviz EP7 (Inalámbrico 100%)</div></div>
+            <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">89731510</span></div>
+            <ul class="features-list">
+                <li><b>El salvavidas de las reformas:</b> Placa exterior a batería, **cero cables** por la fachada.</li>
+                <li>Compatible con panel solar de Ezviz para olvidarse de recargar la batería.</li>
+                <li>Pantalla interior libre que se mueve por casa gracias a su base de carga portátil.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="locks" class="tab-content">
+        <div class="product-card">
+            <div class="prod-title" style="color:var(--color-locks); margin-bottom: 6px;">🔑 Kit Completo SmartLock DL01 Pro</div>
+            <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">94760658</span></div>
+            <ul class="features-list">
+                <li><b>Solución "Llave en mano":</b> Incluye el motor de cerradura, teclado exterior, tarjetas NFC de proximidad y el Gateway WiFi necesario para control remoto.</li>
+            </ul>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-title" style="color:var(--color-locks); margin-bottom: 6px;">📱 Cerradura Suelta DL01 Pro (Plata/Negro)</div>
+            <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">94760657</span></div>
+            <ul class="features-list">
+                <li>Solo el cuerpo motorizado. Ideal para usar solo por Bluetooth o si ya se tiene el ecosistema/puente de Ezviz en casa.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mirillas" class="tab-content">
+        <div class="product-card">
+            <div class="prod-title">Ezviz HP2 (Pantalla Compacta 4.3")</div>
+            <div class="variant-grid" style="margin-top: 8px;">
+                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.9rem;">91639930</span></div>
+                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.9rem;">91639928</span></div>
+            </div>
+            <p style="font-size:0.85rem; color:#475569;">Diseño muy fino, básico y estético. Para presupuestos ajustados que quieren ver quién llama desde el móvil.</p>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-title">Ezviz DP2C (4.3" + Sensor Presencia)</div>
+            <div class="variant-grid" style="margin-top: 8px;">
+                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.9rem;">91855703</span></div>
+                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.9rem; color:#b45309;">83559976*</span></div>
+            </div>
+            <p style="font-size:0.85rem; color:#475569; margin-bottom:4px;"><b>La más vendida:</b> Añade visión nocturna activa y aviso si alguien se queda quieto delante de tu puerta.</p>
+            <div class="alert-box" style="font-size:0.75rem; padding:6px;">* Nota: La ref. 83559976 es el mismo modelo por duplicado de stock en tienda.</div>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-title">Ezviz EP4 (Pantallón Premium 5.5")</div>
+            <div class="variant-grid" style="margin-top: 8px;">
+                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.9rem;">76598783</span></div>
+                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.9rem;">76598788</span></div>
+            </div>
+            <p style="font-size:0.85rem; color:#475569;"><b>Gama Premium:</b> Pantalla gigante perfecta para que niños o personas mayores vean perfectamente el exterior. Filtros de IA para evitar falsas alarmas.</p>
+        </div>
+
+        <div class="alert-box warn">
+            <b>⚠️ Alerta de Stock:</b> ¡Ojo! Si el cliente cambia de color (Oro a Plata), la referencia cambia por completo. Asegúrate siempre antes de picar el pedido en el Booster.
+        </div>
+    </div>
+
+    <div id="camaras" class="tab-content">
+        <div class="product-card" style="border-top: 4px solid var(--color-camaras);">
+            <div class="prod-title" style="color:var(--color-camaras); font-size:1.1rem; margin-bottom:6px;">☀️ Energeeks Cámara 4G Autónoma</div>
+            <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">90863920</span></div>
+            <ul class="features-list" style="margin-top: 6px;">
+                <li><b>Argumento imbatible:</b> Para fincas, huertos o segundas residencias **donde no hay luz ni WiFi**.</li>
+                <li>Lleva un pequeño panel solar que la mantiene con batería infinita.</li>
+                <li><b>eSIM integrada con datos gratis de por vida:</b> El cliente no tiene que pagar cuotas mensuales de tarjeta ni contratos. ¡Se vende sola en el mostrador!</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // LÓGICA DE PESTAÑAS INTERACTIVAS
+    const buttons = document.querySelectorAll('.menu-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+
+            // Si tocamos un botón ya activo, lo cerramos todo
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+                document.getElementById(target).classList.remove('active');
+                return;
+            }
+
+            // Limpiamos estados anteriores
+            buttons.forEach(b => b.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+
+            // Activamos el nuevo objetivo
+            btn.classList.add('active');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
