@@ -1,2 +1,339 @@
-# accesos-inteligentes
-guia de accesos inteligentes 
+
+
+       [index.html](https://github.com/user-attachments/files/28115224/index.html)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Rápida de Venta - Seguridad y Accesos Inteligentes</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --text-color: #2c3e50;
+            --primary-color: #16a085;
+            --orange-accent: #d35400;
+            --card-bg: #ffffff;
+            --table-header-1: #2c3e50;
+            --table-header-2: #27ae60;
+            --table-header-3: #2980b9;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 15px;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, #2c3e50, #1c2833);
+            color: white;
+            padding: 25px 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .title-motor { color: var(--table-header-1); border-bottom-color: var(--table-header-1); }
+        .title-video { color: var(--table-header-2); border-bottom-color: var(--table-header-2); }
+        .title-lock { color: #8e44ad; border-bottom-color: #8e44ad; }
+        .title-mirilla { color: var(--table-header-3); border-bottom-color: var(--table-header-3); }
+        .title-cam { color: #d35400; border-bottom-color: #d35400; }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            color: white;
+            font-weight: 600;
+        }
+
+        .bg-motor th { background-color: var(--table-header-1); }
+        .bg-video th { background-color: var(--table-header-2); }
+        .bg-mirilla th { background-color: var(--table-header-3); }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        .ref-code {
+            color: var(--orange-accent);
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 1rem;
+            background-color: #fef5ef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #faddcf;
+            display: inline-block;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2c3e50;
+            white-space: nowrap;
+        }
+
+        .lock-item {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #fafbfc;
+        }
+
+        .lock-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .lock-name {
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .pro-tip {
+            background-color: #ebf5fb;
+            border-left: 4px solid var(--table-header-3);
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .pro-tip strong {
+            color: var(--table-header-3);
+        }
+
+        /* Optimización para pantallas móviles */
+        @media (max-width: 600px) {
+            body { padding: 8px; }
+            header { padding: 18px 10px; margin-bottom: 12px; }
+            header h1 { font-size: 1.3rem; }
+            .section-card { padding: 12px; margin-bottom: 12px; }
+            th, td { padding: 8px 6px; font-size: 0.85rem; }
+            .ref-code { font-size: 0.85rem; padding: 1px 4px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>🛡️ Guía de Venta: Accesos Inteligentes</h1>
+        <p>Herramienta rápida de consulta de mostrador para el pasillo</p>
+    </header>
+
+    <!-- 1. MOTORES -->
+    <div class="section-card">
+        <h2 class="section-title title-motor">🚗 1. Motores para Cancelas Correderas</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr class="bg-motor">
+                        <th>Modelo</th>
+                        <th style="text-align: center;">Ref. LM</th>
+                        <th style="text-align: center;">Fuerza</th>
+                        <th style="text-align: right;">Precio</th>
+                        <th>Argumento Estrella</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Ezviz HG2 400</b></td>
+                        <td style="text-align: center;"><span class="ref-code">99041385</span></td>
+                        <td style="text-align: center; white-space: nowrap;">400 kg</td>
+                        <td style="text-align: right;" class="price">399,99 €</td>
+                        <td><b>El equilibrado:</b> Conectividad Wi-Fi HaLow, apertura peatonal parcial y <b>batería de respaldo integrada</b> ante cortes de luz.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ezviz HG2 600 Pro</b></td>
+                        <td style="text-align: center;"><span class="ref-code">97067011</span></td>
+                        <td style="text-align: center; white-space: nowrap;">600 kg</td>
+                        <td style="text-align: right;" class="price">599,00 €</td>
+                        <td><b>Seguridad Activa:</b> Para cancelas muy pesadas. Su luz de advertencia perimetral <b>incluye una cámara con IA</b> que graba y detecta personas.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 2. VIDEOPORTEROS -->
+    <div class="section-card">
+        <h2 class="section-title title-video">🔔 2. Videoporteros Inteligentes Wi-Fi</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr class="bg-video">
+                        <th>Modelo</th>
+                        <th style="text-align: center;">Ref. LM</th>
+                        <th style="text-align: center;">Pantalla</th>
+                        <th>Tipo de Instalación / Ventaja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Ezviz HP5</b></td>
+                        <td style="text-align: center;"><span class="ref-code">92155368</span></td>
+                        <td style="text-align: center;">7" Táctil</td>
+                        <td><b>Económico inteligente:</b> Excelente relación calidad-precio. Atiende y abre desde el móvil estés donde estés.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ezviz HP7</b></td>
+                        <td style="text-align: center;"><span class="ref-code">87023036</span></td>
+                        <td style="text-align: center;">7" Táctil</td>
+                        <td><b>Gama alta cableado:</b> Resolución nítida en 2K y placa exterior con lector de <b>tarjetas de proximidad RFID</b>.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ezviz HP7 Pro</b></td>
+                        <td style="text-align: center;"><span class="ref-code">96391346</span></td>
+                        <td style="text-align: center;">7" Táctil</td>
+                        <td><b>Última novedad Premium:</b> Procesador de rendimiento mejorado, mayor fluidez y detección inteligente por IA pulida.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ezviz EP7 Inalámbrico</b></td>
+                        <td style="text-align: center;"><span class="ref-code">89731510</span></td>
+                        <td style="text-align: center;">7" Móvil</td>
+                        <td><b>El salvavidas:</b> Placa exterior 100% a batería (compatible con panel solar). <b>Cero cables</b>. Pantalla interior con base móvil.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 3. CERRADURAS -->
+    <div class="section-card">
+        <h2 class="section-title title-lock">🔒 3. Cerraduras Inteligentes</h2>
+        <div class="lock-item">
+            <div class="lock-name">🔑 Kit Completo Ezviz SmartLock DL01 Pro</div>
+            <div>Referencia Booster: <span class="ref-code">94760658</span></div>
+            <div style="font-size: 0.85rem; margin-top: 4px; color: #555;">La solución "llave en mano". Incluye el motor de la cerradura, teclado numérico exterior, 2 tarjetas NFC de proximidad, sensor de puerta abierta y Gateway Wi-Fi.</div>
+        </div>
+        <div class="lock-item">
+            <div class="lock-name">📱 Cerradura Suelta Ezviz DL01 Pro (Plata/Negro)</div>
+            <div>Referencia Booster: <span class="ref-code">94760657</span></div>
+            <div style="font-size: 0.85rem; margin-top: 4px; color: #555;">Solo el motor. Para usar por Bluetooth a corta distancia o si el cliente ya dispone de un puente compatible de la marca.</div>
+        </div>
+    </div>
+
+    <!-- 4. MIRILLAS -->
+    <div class="section-card">
+        <h2 class="section-title title-mirilla">👁️ 4. Mirillas Digitales Wi-Fi</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr class="bg-mirilla">
+                        <th>Modelo / Características</th>
+                        <th style="text-align: center;">Ref. ORO</th>
+                        <th style="text-align: center;">Ref. PLATA</th>
+                        <th>¿Cuándo recomendarla?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Ezviz HP2</b><br><span style="font-size: 0.8rem; color: #7f8c8d;">Pantalla 4.3" · Wi-Fi</span></td>
+                        <td style="text-align: center;"><span class="ref-code">91639930</span></td>
+                        <td style="text-align: center;"><span class="ref-code">91639928</span></td>
+                        <td>Cliente que busca algo compacto, discreto y estético en la puerta sin elevar el presupuesto.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ezviz DP2C</b><br><span style="font-size: 0.8rem; color: #7f8c8d;">4.3" · Wi-Fi · Presencia</span></td>
+                        <td style="text-align: center;"><span class="ref-code">91855703</span></td>
+                        <td style="text-align: center;"><span class="ref-code" style="background-color: #fff9f2; border-color: #faddcf;">83559976 *</span></td>
+                        <td><b>La más vendida:</b> Suma visión nocturna y detector de presencia. <i>(*Ref. 83559976 es un duplicado por stock).</i></td>
+                    </tr>
+                    <tr>
+                        <td><b>Ezviz EP4</b><br><span style="font-size: 0.8rem; color: #7f8c8d;">Pantallón 5.5" · Wi-Fi · IA</span></td>
+                        <td style="text-align: center;"><span class="ref-code">76598783</span></td>
+                        <td style="text-align: center;"><span class="ref-code">76598788</span></td>
+                        <td><b>Gama Premium:</b> Pantalla gigante para máxima visibilidad (mayor/niños) y acabados de lujo.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pro-tip">
+            <strong>💡 Recordatorio de pasillo:</strong> Si el cliente cambia de color (Oro / Plata), la referencia de 8 dígitos en el Booster cambia completamente. ¡Atenta al picar para evitar descuadres de stock!
+        </div>
+    </div>
+
+    <!-- 5. AS EN LA MANGA -->
+    <div class="section-card">
+        <h2 class="section-title title-cam">📡 5. El "As" bajo la manga en Cámaras</h2>
+        <div class="lock-item" style="border-left: 4px solid #d35400;">
+            <div class="lock-name" style="color: #d35400;">☀️ Energeeks Cámara 4G Exterior Autónoma</div>
+            <div style="margin-bottom: 6px;">Referencia Booster: <span class="ref-code">90863920</span></div>
+            <div style="font-size: 0.88rem; color: #333;"><b>El argumento definitivo:</b> Perfecta para segundas residencias, huertos o zonas comunes <b>sin Wi-Fi ni luz</b>. Funciona con batería solar e incluye una <b>eSIM con datos gratuitos de por vida</b> (sin cuotas mensuales). ¡Se vende sola!</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
