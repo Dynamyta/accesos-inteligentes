@@ -1,24 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Asistente de Accesos - Pasillo</title>
+    <title>Asistente de Ventas - Seguridad y Accesos</title>
     <style>
         :root {
-            --bg-app: #f1f5f9;
-            --text-main: #1e293b;
-            --primary: #16a085;
-            --orange-lm: #e67e22;
+            --bg-app: #f4f7f6;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --solar-green: #2ecc71;
+            --solar-blue: #3498db;
+            --solar-dark: #2c3e50;
+            --orange-ref: #e67e22;
             --card-bg: #ffffff;
-            --border: #cbd5e1;
-            
-            /* Colores de categorías */
-            --color-motores: #2c3e50;
-            --color-porteros: #27ae60;
-            --color-locks: #8e44ad;
-            --color-mirillas: #2980b9;
-            --color-camaras: #d35400;
+            --border-light: #e2e8f0;
         }
 
         * {
@@ -33,67 +30,81 @@
             background-color: var(--bg-app);
             color: var(--text-main);
             line-height: 1.4;
-            padding: 10px;
+            padding: 12px;
         }
 
         header {
             text-align: center;
-            padding: 15px 10px;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 18px 10px;
+            background: linear-gradient(135deg, var(--solar-blue), var(--solar-green));
             color: white;
-            border-radius: 12px;
+            border-radius: 8px;
             margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        header h1 { font-size: 1.3rem; margin-bottom: 4px; }
-        header p { font-size: 0.85rem; opacity: 0.8; }
+        header h1 { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+        header p { font-size: 0.85rem; opacity: 0.9; }
 
-        /* MENÚ INTERACTIVO DE BOTONES */
+        /* MENÚ INTERACTIVO ESTILO CALCULADORA SOLAR */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 8px;
             margin-bottom: 15px;
         }
 
         .menu-btn {
             background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 6px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            padding: 14px 8px;
             text-align: center;
-            font-size: 0.8rem;
-            font-weight: bold;
+            font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-            color: #64748b;
+            gap: 4px;
+            color: var(--solar-dark);
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.15s ease;
         }
 
-        /* Botón "As en la manga" ocupando el ancho completo abajo */
-        .menu-btn.full-width {
-            grid-column: span 3;
-            flex-direction: row;
-            justify-content: center;
-            gap: 10px;
-            padding: 10px;
+        .menu-btn span {
+            font-size: 1.2rem;
         }
 
-        /* Estados Activos del Menú */
-        .menu-btn.active[data-target="motores"] { background-color: var(--color-motores); color: white; border-color: var(--color-motores); }
-        .menu-btn.active[data-target="porteros"] { background-color: var(--color-porteros); color: white; border-color: var(--color-porteros); }
-        .menu-btn.active[data-target="locks"] { background-color: var(--color-locks); color: white; border-color: var(--color-locks); }
-        .menu-btn.active[data-target="mirillas"] { background-color: var(--color-mirillas); color: white; border-color: var(--color-mirillas); }
-        .menu-btn.active[data-target="camaras"] { background-color: var(--color-camaras); color: white; border-color: var(--color-camaras); }
+        /* Botón de cámaras ocupando las dos columnas */
+        .menu-btn.wide {
+            grid-column: span 2;
+            padding: 14px;
+        }
+
+        /* Estados Activos alternando Verde y Azul estilo Calculadora */
+        .menu-grid .menu-btn:nth-child(odd).active {
+            background-color: var(--solar-green) !important;
+            color: white !important;
+            border-color: var(--solar-green) !important;
+        }
+
+        .menu-grid .menu-btn:nth-child(even).active {
+            background-color: var(--solar-blue) !important;
+            color: white !important;
+            border-color: var(--solar-blue) !important;
+        }
+
+        .menu-grid .menu-btn.wide.active {
+            background: linear-gradient(135deg, var(--solar-blue), var(--solar-green)) !important;
+            color: white !important;
+            border-color: var(--solar-blue) !important;
+        }
 
         /* CONTENEDORES DE SECCIONES */
         .tab-content {
             display: none;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.2s ease-out;
         }
 
         .tab-content.active {
@@ -101,37 +112,44 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TARJETAS DE PRODUCTO */
+        /* TARJETAS DE PRODUCTO LIMPIAS */
         .product-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 14px;
-            margin-bottom: 12px;
-            border: 1px solid var(--border);
+            margin-bottom: 10px;
+            border: 1px solid var(--border-light);
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border-left: 4px solid var(--solar-blue);
+        }
+
+        /* Alternamos el borde izquierdo para que quede más dinámico */
+        .tab-content:nth-of-type(even) .product-card {
+            border-left-color: var(--solar-green);
         }
 
         .prod-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             gap: 8px;
         }
 
         .prod-title {
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--solar-dark);
         }
 
         .prod-price {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
-            color: #0f172a;
+            color: var(--solar-dark);
             white-space: nowrap;
         }
 
@@ -140,38 +158,38 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background-color: #fff5ed;
-            border: 1px solid #fcd5b8;
-            padding: 4px 8px;
-            border-radius: 6px;
-            margin-bottom: 10px;
+            background-color: #fff6f0;
+            border: 1px solid #fde3cf;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
         }
 
         .booster-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            color: #c2410c;
+            color: #d35400;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .booster-ref {
             font-family: monospace;
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--orange-lm);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--orange-ref);
         }
 
-        /* ARGUMENTOS EN VIÑETAS */
+        /* LISTA DE ARGUMENTOS DE VENTA */
         .features-list {
             list-style: none;
-            font-size: 0.88rem;
-            color: #334155;
+            font-size: 0.85rem;
+            color: #475569;
         }
 
         .features-list li {
-            margin-bottom: 5px;
-            padding-left: 14px;
+            margin-bottom: 4px;
+            padding-left: 12px;
             position: relative;
         }
 
@@ -179,51 +197,58 @@
             content: "•";
             position: absolute;
             left: 0;
-            color: #94a3b8;
-            font-weight: bold;
+            color: var(--solar-blue);
         }
 
-        .features-list strong {
-            color: #0f172a;
+        .tab-content:nth-of-type(even) .features-list li::before {
+            color: var(--solar-green);
         }
 
-        /* ADVERTENCIAS / CONSEJOS */
-        .alert-box {
-            background-color: #f0fdf4;
-            border-left: 4px solid var(--color-porteros);
-            padding: 10px;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.85rem;
-            margin-top: 10px;
-        }
-
-        .alert-box.warn {
-            background-color: #fef2f2;
-            border-left-color: #ef4444;
-            color: #991b1b;
-        }
-
-        /* GRILLA DOBLE PARA VARIANTES (Mirillas Oro/Plata) */
+        /* CUADRÍCULA DE VARIANTES (Mirillas Oro/Plata) */
         .variant-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 6px;
+            margin-top: 6px;
+            margin-bottom: 6px;
         }
 
         .variant-box {
             background: #f8fafc;
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-light);
             padding: 6px;
-            border-radius: 6px;
+            border-radius: 4px;
             text-align: center;
         }
 
         .variant-label {
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: #64748b;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
             margin-bottom: 2px;
+        }
+
+        /* AVISOS Y ALERTAS */
+        .alert-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-light);
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .alert-box.warn {
+            background-color: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            border-right: 1px solid #fadbd8;
+            border-top: 1px solid #fadbd8;
+            border-bottom: 1px solid #fadbd8;
+            color: #c0392b;
+            font-size: 0.82rem;
+            border-radius: 0 4px 4px 0;
+            margin-top: 12px;
         }
 
     </style>
@@ -233,16 +258,16 @@
 <div class="app-container">
 
     <header>
-        <h1>🛡️ Catálogo de Accesos</h1>
-        <p>Toca una categoría para ver referencias y argumentos</p>
+        <h1>🛡️ Asistente de Ventas Ezviz</h1>
+        <p>Toca una sección para consultar referencias en el pasillo</p>
     </header>
 
     <nav class="menu-grid">
-        <div class="menu-btn" data-target="motores"><span>🚗</span>Motores</div>
-        <div class="menu-btn" data-target="porteros"><span>🔔</span>Porteros</div>
+        <div class="menu-btn" data-target="motores"><span>🚗</span>Motores Puerta</div>
+        <div class="menu-btn" data-target="porteros"><span>🔔</span>Videoporteros</div>
         <div class="menu-btn" data-target="locks"><span>🔒</span>Cerraduras</div>
-        <div class="menu-btn" data-target="mirillas"><span>👁️</span>Mirillas</div>
-        <div class="menu-btn full-width" data-target="camaras"><span>📡</span>El "As" bajo la manga</div>
+        <div class="menu-btn" data-target="mirillas"><span>👁️</span>Mirillas Digitales</div>
+        <div class="menu-btn wide" data-target="camaras"><span>📡</span>Cámaras de Seguridad</div>
     </nav>
 
     <div id="motores" class="tab-content">
@@ -256,9 +281,9 @@
                 <span class="booster-ref">99041385</span>
             </div>
             <ul class="features-list">
-                <li><b>El equilibrado:</b> Ideal para el 80% de puertas residenciales estándar (aluminio/hierro ligero).</li>
-                <li><b>Batería auxiliar integrada:</b> Salvavidas total; si hay un corte de luz, la puerta se sigue abriendo.</li>
-                <li>Apertura remota por App/Bluetooth y opción de <b>apertura parcial</b> para paso de peatones o bicis.</li>
+                <li><b>El equilibrado:</b> Perfecto para la gran mayoría de cancelas residenciales estándar.</li>
+                <li><b>Batería de respaldo:</b> Sigue funcionando perfectamente ante un corte de luz.</li>
+                <li>Wi-Fi HaLow de gran alcance, apertura por App y opción de apertura parcial para peatones.</li>
             </ul>
         </div>
 
@@ -272,9 +297,9 @@
                 <span class="booster-ref">97067011</span>
             </div>
             <ul class="features-list">
-                <li><b>Seguridad Activa:</b> Fuerza bruta para cancelas grandes y pesadas (hierro macizo/madera).</li>
-                <li><b>Cámara de vídeo con IA integrada:</b> La propia luz de aviso exterior graba en vivo y alerta al móvil si detecta intrusos merodeando antes de abrir.</li>
-                <li>Usa tecnología Wi-Fi HaLow™ para asegurar cobertura total aunque el router esté muy lejos.</li>
+                <li><b>Fuerza brutal:</b> Diseñado para puertas pesadas de hierro macizo o madera estructural.</li>
+                <li><b>Cámara con IA integrada:</b> La propia luz de aviso exterior graba en vivo y alerta al móvil si detecta personas merodeando antes de abrir.</li>
+                <li>Máxima seguridad activa y conectividad de largo alcance Wi-Fi HaLow.</li>
             </ul>
         </div>
     </div>
@@ -284,7 +309,7 @@
             <div class="prod-header"><div class="prod-title">Ezviz HP5 (7" WiFi)</div></div>
             <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">92155368</span></div>
             <ul class="features-list">
-                <li><b>La opción económica inteligente:</b> Funciones esenciales de contestar y abrir desde el móvil a un precio imbatible.</li>
+                <li><b>Económico inteligente:</b> Pantalla táctil de 7". Funciones clave de responder y abrir de forma remota desde la App con la mejor relación calidad-precio.</li>
             </ul>
         </div>
 
@@ -292,16 +317,15 @@
             <div class="prod-header"><div class="prod-title">Ezviz HP7 (7" 2K WiFi)</div></div>
             <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">87023036</span></div>
             <ul class="features-list">
-                <li><b>Gama alta fija:</b> Cableado tradicional con una nitidez de imagen espectacular en 2K.</li>
-                <li><b>Lector RFID:</b> Incluye llaveros/tarjetas de proximidad para entrar sin usar llaves físicas ni móvil.</li>
+                <li><b>Gama alta cableado:</b> Resolución 2K ultra nítida. Placa exterior con lector de <b>tarjetas RFID</b> de proximidad para abrir sin llaves.</li>
             </ul>
         </div>
 
         <div class="product-card">
-            <div class="prod-header"><div class="prod-title">Ezviz HP7 Pro (7" Premium)</div></div>
-            <div class="booster-box"><span class="ref-label booster-label">Ref LM</span><span class="booster-ref">96391346</span></div>
+            <div class="prod-header"><div class="prod-title">Ezviz HP7 Pro (Premium)</div></div>
+            <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">96391346</span></div>
             <ul class="features-list">
-                <li><b>Última novedad:</b> Evolución directa del HP7 con procesador más rápido, vídeo más fluido y detección IA mejorada.</li>
+                <li><b>Última novedad:</b> Versión evolucionada con procesador más rápido, transiciones de vídeo más fluidas y filtros de IA avanzados para personas.</li>
             </ul>
         </div>
 
@@ -309,73 +333,84 @@
             <div class="prod-header"><div class="prod-title">Ezviz EP7 (Inalámbrico 100%)</div></div>
             <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">89731510</span></div>
             <ul class="features-list">
-                <li><b>El salvavidas de las reformas:</b> Placa exterior a batería, **cero cables** por la fachada.</li>
-                <li>Compatible con panel solar de Ezviz para olvidarse de recargar la batería.</li>
-                <li>Pantalla interior libre que se mueve por casa gracias a su base de carga portátil.</li>
+                <li><b>El salvavidas:</b> Placa exterior a batería (compatible con panel solar). **Cero cables por la fachada**. Pantalla interior con base de carga portátil.</li>
             </ul>
         </div>
     </div>
 
     <div id="locks" class="tab-content">
         <div class="product-card">
-            <div class="prod-title" style="color:var(--color-locks); margin-bottom: 6px;">🔑 Kit Completo SmartLock DL01 Pro</div>
+            <div class="prod-title" style="margin-bottom: 6px;">🔑 Kit Completo SmartLock DL01 Pro</div>
             <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">94760658</span></div>
             <ul class="features-list">
-                <li><b>Solución "Llave en mano":</b> Incluye el motor de cerradura, teclado exterior, tarjetas NFC de proximidad y el Gateway WiFi necesario para control remoto.</li>
+                <li><b>Pack completo:</b> Incluye motor de cerradura, teclado exterior, tarjetas NFC de proximidad, sensor de puerta y el Gateway WiFi remoto.</li>
             </ul>
         </div>
 
         <div class="product-card">
-            <div class="prod-title" style="color:var(--color-locks); margin-bottom: 6px;">📱 Cerradura Suelta DL01 Pro (Plata/Negro)</div>
+            <div class="prod-title" style="margin-bottom: 6px;">📱 Cerradura Suelta DL01 Pro</div>
             <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">94760657</span></div>
             <ul class="features-list">
-                <li>Solo el cuerpo motorizado. Ideal para usar solo por Bluetooth o si ya se tiene el ecosistema/puente de Ezviz en casa.</li>
+                <li>Solo el cuerpo motorizado (Plata/Negro). Perfecto para uso local por Bluetooth o si ya disponen de un puente Ezviz en la vivienda.</li>
             </ul>
         </div>
     </div>
 
     <div id="mirillas" class="tab-content">
         <div class="product-card">
-            <div class="prod-title">Ezviz HP2 (Pantalla Compacta 4.3")</div>
-            <div class="variant-grid" style="margin-top: 8px;">
-                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.9rem;">91639930</span></div>
-                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.9rem;">91639928</span></div>
+            <div class="prod-title">Ezviz HP2 (Pantalla Básica 4.3")</div>
+            <div class="variant-grid">
+                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.85rem;">91639930</span></div>
+                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.85rem;">91639928</span></div>
             </div>
-            <p style="font-size:0.85rem; color:#475569;">Diseño muy fino, básico y estético. Para presupuestos ajustados que quieren ver quién llama desde el móvil.</p>
+            <p style="font-size:0.82rem; color:#64748b;">Diseño extrafino y discreto. Ideal para presupuestos ajustados que buscan seguridad básica en el móvil.</p>
         </div>
 
         <div class="product-card">
-            <div class="prod-title">Ezviz DP2C (4.3" + Sensor Presencia)</div>
-            <div class="variant-grid" style="margin-top: 8px;">
-                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.9rem;">91855703</span></div>
-                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.9rem; color:#b45309;">83559976*</span></div>
+            <div class="prod-title">Ezviz DP2C (4.3" + Sensor de Presencia)</div>
+            <div class="variant-grid">
+                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.85rem;">91855703</span></div>
+                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.85rem; color:#b45309;">83559976*</span></div>
             </div>
-            <p style="font-size:0.85rem; color:#475569; margin-bottom:4px;"><b>La más vendida:</b> Añade visión nocturna activa y aviso si alguien se queda quieto delante de tu puerta.</p>
-            <div class="alert-box" style="font-size:0.75rem; padding:6px;">* Nota: La ref. 83559976 es el mismo modelo por duplicado de stock en tienda.</div>
+            <p style="font-size:0.82rem; color:#64748b; margin-bottom:4px;"><b>La más vendida:</b> Cuenta con visión nocturna de alta claridad y alertas si alguien se queda parado frente a la puerta.</p>
+            <div class="alert-box" style="font-size:0.72rem; padding:4px;">* Ref. 83559976 es el mismo modelo por duplicidad de stock.</div>
         </div>
 
         <div class="product-card">
             <div class="prod-title">Ezviz EP4 (Pantallón Premium 5.5")</div>
-            <div class="variant-grid" style="margin-top: 8px;">
-                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.9rem;">76598783</span></div>
-                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.9rem;">76598788</span></div>
+            <div class="variant-grid">
+                <div class="variant-box"><div class="variant-label">🏅 ORO</div><span class="booster-ref" style="font-size:0.85rem;">76598783</span></div>
+                <div class="variant-box"><div class="variant-label">🥈 PLATA</div><span class="booster-ref" style="font-size:0.85rem;">76598788</span></div>
             </div>
-            <p style="font-size:0.85rem; color:#475569;"><b>Gama Premium:</b> Pantalla gigante perfecta para que niños o personas mayores vean perfectamente el exterior. Filtros de IA para evitar falsas alarmas.</p>
+            <p style="font-size:0.82rem; color:#64748b;"><b>Gama Premium:</b> Pantalla gigante perfecta para niños o mayores. Algoritmos de IA para eliminar falsas alertas por sombras o animales.</p>
         </div>
 
         <div class="alert-box warn">
-            <b>⚠️ Alerta de Stock:</b> ¡Ojo! Si el cliente cambia de color (Oro a Plata), la referencia cambia por completo. Asegúrate siempre antes de picar el pedido en el Booster.
+            <b>⚠️ Recordatorio de pasillo:</b> El cambio de color (Oro o Plata) altera por completo la referencia de 8 dígitos. ¡Mucho ojo al picar en el Booster!
         </div>
     </div>
 
     <div id="camaras" class="tab-content">
-        <div class="product-card" style="border-top: 4px solid var(--color-camaras);">
-            <div class="prod-title" style="color:var(--color-camaras); font-size:1.1rem; margin-bottom:6px;">☀️ Energeeks Cámara 4G Autónoma</div>
+        <div class="product-card" style="background-color: #fafbfc;">
+            <div class="prod-header">
+                <div class="prod-title" style="color: var(--solar-blue);">☀️ Energeeks Cámara 4G Autónoma</div>
+            </div>
             <div class="booster-box"><span class="booster-label">Ref LM</span><span class="booster-ref">90863920</span></div>
-            <ul class="features-list" style="margin-top: 6px;">
-                <li><b>Argumento imbatible:</b> Para fincas, huertos o segundas residencias **donde no hay luz ni WiFi**.</li>
-                <li>Lleva un pequeño panel solar que la mantiene con batería infinita.</li>
-                <li><b>eSIM integrada con datos gratis de por vida:</b> El cliente no tiene que pagar cuotas mensuales de tarjeta ni contratos. ¡Se vende sola en el mostrador!</li>
+            <ul class="features-list">
+                <li><b>El "As" bajo la manga:</b> Diseñada para fincas, parcelas o segundas residencias **sin luz ni WiFi**.</li>
+                <li><b>eSIM con Datos Gratuitos de por vida:</b> El cliente no paga ninguna cuota mensual. Viene con conexión gratis para siempre.</li>
+                <li>Lleva un panel solar incluido que mantiene la carga de forma automática. ¡Se vende sola!</li>
+            </ul>
+        </div>
+
+        <div class="product-card">
+            <div class="prod-header">
+                <div class="prod-title">Cámaras Ezviz a Batería (Gama Exterior)</div>
+            </div>
+            <ul class="features-list">
+                <li><b>Instalación 100% inalámbrica:</b> Ideal para colocar en porches, fachadas o zonas de jardín sin cablear ni buscar enchufes.</li>
+                <li><b>Ecosistema Solar:</b> Perfectas para ofrecer en venta cruzada junto al panel solar de Ezviz para olvidarse de recargar.</li>
+                <li>Detección inteligente de siluetas humanas, visión nocturna en color y avisos directos al smartphone.</li>
             </ul>
         </div>
     </div>
@@ -391,18 +426,18 @@
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
 
-            // Si tocamos un botón ya activo, lo cerramos todo
+            // Si se toca la pestaña activa, se cierra
             if (btn.classList.contains('active')) {
                 btn.classList.remove('active');
                 document.getElementById(target).classList.remove('active');
                 return;
             }
 
-            // Limpiamos estados anteriores
+            // Limpieza de estados
             buttons.forEach(b => b.classList.remove('active'));
             contents.forEach(c => c.classList.remove('active'));
 
-            // Activamos el nuevo objetivo
+            // Activación
             btn.classList.add('active');
             document.getElementById(target).classList.add('active');
         });
